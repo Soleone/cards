@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
 class Person
-  include MetaBoost
+  include MetaClass
   attributes :first_name, :last_name
 end
 
 
-describe "MetaBoost" do
+describe "MetaClass" do
   before do
     @person = Person.new
   end
@@ -15,7 +15,7 @@ describe "MetaBoost" do
     it "should add a class method called create_attribute to class" do
       lambda do
         class A
-          include MetaBoost
+          include MetaClass
           attributes :name
         end
       end.should_not raise_error(NoMethodError)

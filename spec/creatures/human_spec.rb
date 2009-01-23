@@ -9,4 +9,7 @@ describe "Human" do
     Human.new.text.should be_nil
   end
   
+  it "should have 1 defense" do
+    Human.new.defense.should be(1) 
+  end
 end

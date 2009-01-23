@@ -1,6 +1,5 @@
 class Card
-  include MetaBoost
-  
+  include MetaClass
   attributes :title, :type, :text, :description
 
   type name

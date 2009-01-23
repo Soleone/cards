@@ -6,7 +6,7 @@ describe "Card" do
   end
   
   it do
-    Card.ancestors.should include(MetaBoost)
+    Card.ancestors.should include(MetaClass)
   end
   
   context ".attr_generate" do
