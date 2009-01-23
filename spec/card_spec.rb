@@ -28,7 +28,7 @@ describe "Card" do
     Card.should respond_to(:description)
   end
   
-  it "should have type of 'Card'" do
-    @card.type.should == "Card"
+  it "should have empty type" do
+    @card.type.should be_nil
   end
 end

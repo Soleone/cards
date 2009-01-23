@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
+include Cards
+
 class Person
   include MetaClass
   attributes :first_name, :last_name

@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
+include Cards::Creatures
+
 describe "Human" do
   it "#type should be 'Human'" do
     Human.new.type.should == "Human"
