@@ -1,0 +1,26 @@
+h1. Cards (temporary name)
+
+Cards wants to be a framework for building card games like Magic: The Gathering.
+
+h2. User Guide
+
+A @Card@ can have a @name@, @type@, @description@, a subclass is @Creature@ (something to "put on the table").
+You can inherit from the @Creature@ model to create monsters and people, etc.
+
+Creatures include the @Fighting@ module, which gives them @power@, @defense@ and @health@
+They can attack another creature and deal damage according to their power.
+If a creature has 3 power and the other one 1 defense, then the other creature will loose 2 health.
+
+*TODO*
+
+
+h2. TODO
+
+These things need to be done:
+
+# -Summon Creatures-
+# -Creatures can fight each other-
+# Creatures stay until killed
+# Enchant creatures with temporary or permanent "spells"
+# "Cast spells" that do something only once (like 2 damage to player)
+# Try to be theme-agnostic could be either fantasy, science fiction or even reality-like
