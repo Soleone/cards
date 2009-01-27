@@ -20,7 +20,7 @@ These things need to be done:
 
 # -Summon Creatures-
 # -Creatures can fight each other-
-# Creatures stay until killed
+# -Creatures stay until killed-
 # Enchant creatures with temporary or permanent "spells"
 # "Cast spells" that do something only once (like 2 damage to player)
 # Try to be theme-agnostic could be either fantasy, science fiction or even reality-like
