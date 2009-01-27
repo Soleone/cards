@@ -1,0 +1,56 @@
+require File.dirname(__FILE__) + "/../spec_helper"
+
+include Cards::Creatures
+
+describe "Fighting" do
+  before do
+    @creature = Creature.new
+  end
+
+  context "when included" do
+    
+    it do
+      @creature.should respond_to(:hit_taken)
+    end
+    
+    it do
+      @creature.should respond_to(:attack)
+    end
+  end
+  
+  context "attack" do
+    before do
+      @target = Creature.new
+      @man = Human.create(:power => 2)
+      @woman = Human.create(:power => 1, :health => 10)
+    end
+    
+    it "should create a Hit and apply it" do
+      lambda { @creature.attack(@target) }.should change { @target.hits.size }.from(0).to(1)
+      @target.hits.first.should be_applied
+    end
+    
+    it "should invoke the 'hit_taken' callback" do
+      @target.should_receive(:hit_taken)
+      @creature.attack(@target)
+    end
+    
+    it "should invoke the generic 'event' callback" do
+      @target.should_receive(:event)
+      @creature.attack(@target)
+    end
+
+    it "should lose 0 health with 1 defense when being hit with 1 power" do
+      lambda{ @woman.attack(@man) }.should_not change{@man.health}
+    end
+    
+    it "should lose 1 health with 1 defense when being hit with 2 power" do
+      lambda{ @man.attack(@woman) }.should change{@woman.health}.by(-1)
+    end
+
+    it "should lose 3 health with 1 defense when hit with 2 power and double-modifier" do
+      lambda{ @man.attack(@woman, :double => true) }.should change{@woman.health}.by(-3)
+    end
+
+  end
+end

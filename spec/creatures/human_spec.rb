@@ -11,7 +11,17 @@ describe "Human" do
     Human.new.text.should be_nil
   end
   
-  it "should have 1 defense" do
-    Human.new.defense.should be(1) 
+  context "when created" do
+    it "should have 0 power" do
+      Human.new.power.should be(0) 
+    end
+
+    it "should have 1 defense" do
+      Human.new.defense.should be(1) 
+    end
+    
+    it "should have 2 health" do
+      Human.new.health.should be(2)
+    end    
   end
 end

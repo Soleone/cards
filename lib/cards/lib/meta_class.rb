@@ -4,7 +4,8 @@ module Cards
     def self.included(base)
       base.send(:extend, ClassMethods)
     end
-  
+ 
+  private 
     module ClassMethods
       def metaclass
         class << self; self; end
@@ -21,21 +22,26 @@ module Cards
               @@attributes ||= {}
               @@attributes[name] = value
             end
+            
+            define_method(:create) do |options|
+              instance = new
+              options.each do |name, value|
+                instance.instance_variable_set("@#{name}", value)
+              end
+              instance
+            end
           end
         end
 
         class_eval do
           define_method(:initialize) do
-            #if self.class.attributes
-              self.class.attributes.each do |name, value|
-               # p "Found attr: #{name} => #{value}"
-                instance_variable_set("@#{name}", value) unless instance_variable_get("@#{name}")
-              end
-            #end
+            self.class.attributes.each do |name, value|
+              instance_variable_set("@#{name}", value)
+            end
           end
         end
-        # end attributes
-      end
-    end  
+      end  # end attributes
+    end
+    
   end
 end

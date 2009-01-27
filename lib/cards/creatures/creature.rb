@@ -1,11 +1,7 @@
 module Cards
   module Creatures
     class Creature < Card
-      attributes :attack, :defense
-
-      attack 0
-      defense 1
-      type name
+      include Behavior::Fighting
     end
   end
 end
