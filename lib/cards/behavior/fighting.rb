@@ -48,33 +48,58 @@ module Cards
       # instance methods
       # ================
       
+      # try to git another creature
+      # TODO: could later be used to only hit if not blocked, deflected or similar.
+      #       Creatures could also have different chances to hit in an additional attribute (more complex rules though)
       def attack(creature, options={})
-        # TODO: feature - only hit if not blocked, deflected or similar
         creature.take_hit(self, options)
       end
       
+      # the creature gets hit
       def take_hit(from, options={})
         @hits ||= []
         hit = Hit.new(from, self, options)
         @hits << hit.apply
         event(:hit, hit)        
       end
-
+      
+      # all the hits this creature has endured
+      # TODO: could later be used for bonuses or special abilities for example
       def hits
         @hits || []
       end
       
+      def killed?
+        kill! if health <= 0
+        @killed 
+      end
+      
+      def kill!
+        return if @killed
+        health = 0
+        event(:killed)
+        @killed = true
+      end
+      
     protected
-      # overwrite this in subclasses to react on hits
+      # overwrite this in subclasses to react on incoming hits
       def hit_taken(hit)
         puts "#{type} has been hit for #{hit.impact}"
+      end
+
+      # overwrite this in subclasses to react when the creature dies
+      def killed
+        puts "#{type} has been killed"
       end
       
     private
       def event(name, *args)
         case name
         when :hit
-          hit_taken(args.first)
+          self.hit_taken(args.first)
+          self.killed?
+        when :killed
+          self.killed
         end
       end
             

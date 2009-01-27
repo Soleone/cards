@@ -51,6 +51,24 @@ describe "Fighting" do
     it "should lose 3 health with 1 defense when hit with 2 power and double-modifier" do
       lambda{ @man.attack(@woman, :double => true) }.should change{@woman.health}.by(-3)
     end
-
+    
+    it "should get killed when health reaches 0" do
+      @man.attack(@target)
+      @target.health.should == 0
+      @target.should be_killed
+    end
+    
+    it "should call killed event when killed for first time" do
+      @target.should_receive(:killed)
+      @target.kill!      
+    end
+    
+    it "should not call killed event when killed and already dead" do
+      @target.should_receive(:killed).once
+      @target.kill!
+      @target.kill!
+    end
+    
   end
+  
 end

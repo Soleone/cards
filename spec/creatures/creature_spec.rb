@@ -23,7 +23,7 @@ describe "Creature" do
     end
     
     it "should have 1 health" do
-      @creature.health.should be(2)
+      @creature.health.should be(1)
     end
   end
   

@@ -11,8 +11,24 @@ module Cards
         class << self; self; end
       end
   
+      def recursive_attributes
+        all_attributes = {}
+        ancestors[0..-1].each do |clazz|
+          if clazz.respond_to?(:attributes) && clazz.attributes.is_a?(Hash)
+            clazz.attributes.each do |key, value|
+              all_attributes[key] = value unless all_attributes[key]
+            end
+          end
+        end
+        all_attributes
+      end
+      
+      def all_attributes
+        @@attributes  
+      end
+      
       def attributes(*names)
-        return @@attributes if names.empty?
+        return @@attributes[self.name] if names.empty?
     
         attr_accessor *names
 
@@ -20,7 +36,8 @@ module Cards
           metaclass.instance_eval do
             define_method(name) do |value|
               @@attributes ||= {}
-              @@attributes[name] = value
+              @@attributes[self.name] ||= {}
+              @@attributes[self.name][name] = value
             end
             
             define_method(:create) do |options|
@@ -35,7 +52,7 @@ module Cards
 
         class_eval do
           define_method(:initialize) do
-            self.class.attributes.each do |name, value|
+            self.class.recursive_attributes.each do |name, value|
               instance_variable_set("@#{name}", value)
             end
           end
