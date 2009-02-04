@@ -39,14 +39,16 @@ module Cards
         def temporary?; @temporary; end
         
         def activate!(creature)
-          creature.send("#{@attribute}!", @modifier) unless @active
+          creature.send("#{@attribute}!", @modifier) unless active?
           @active = true
         end
         
         def deactivate!(creature)
-          creature.send("#{@attribute}!", -@modifier) if @active
+          creature.send("#{@attribute}!", -@modifier) if active?
           @active = false
         end
+        
+        def active?; @active ;end
       end
       
     end

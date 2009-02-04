@@ -13,13 +13,27 @@ describe "Abilities" do
   end
   
   context "AttributeAbilities" do
+    before do
+      @rage = AttributeAbility.new(:power, +2)
+      @defense = AttributeAbility.new(:defense, +1)
+    end
+    
     it "activate all abilities a creature has with abilities#use" do
-      @creature.abilities << AttributeAbility.new(:power, +2)
-      @creature.abilities << AttributeAbility.new(:defense, -1)
+      @creature.abilities << @rage
+      @creature.abilities << @defense
       @creature.abilities.each { |ab| ab.should_not be_active }
 
       @creature.abilities.use
       @creature.abilities.each { |ab| ab.should be_active }
     end
+    
+    it "should activate an Effect when using the Ability" do |variable|
+      @creature.abilities << @rage
+      @creature.effects.should be_empty
+      lambda { @creature.abilities.use }.should change{@creature.power}.by(2)
+      @creature.should have(1).effects
+      @creature.effects.first.should be_active
+    end
+      
   end
 end
