@@ -48,7 +48,7 @@ module Cards
       # instance methods
       # ================
       
-      # try to git another creature
+      # try to attack another creature
       # TODO: could later be used to only hit if not blocked, deflected or similar.
       #       Creatures could also have different chances to hit in an additional attribute (more complex rules though)
       def attack(creature, options={})

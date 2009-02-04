@@ -7,15 +7,20 @@ describe "Fighting" do
     @creature = Creature.new
   end
 
-  context "when included" do
+  context "when included in a Class should add methods:" do    
+    it { @creature.should respond_to(:power) }
+    it { @creature.should respond_to(:defense) }
+    it { @creature.should respond_to(:health) }
     
-    it do
-      @creature.should respond_to(:hit_taken)
-    end
+    it { @creature.should respond_to(:attack) }
+    it { @creature.should respond_to(:take_hit) }
+
+    it { @creature.should respond_to(:hit_taken) }
+    it { @creature.should respond_to(:killed) }
+
+    it { @creature.should respond_to(:kill!) }
+    it { @creature.should respond_to(:killed?) }
     
-    it do
-      @creature.should respond_to(:attack)
-    end
   end
   
   context "attack" do

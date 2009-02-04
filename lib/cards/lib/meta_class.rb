@@ -2,7 +2,7 @@ module Cards
   module MetaClass
 
     def self.included(base)
-      base.send(:extend, ClassMethods)
+      base.send(:extend, ClassMethods)      
     end
  
   private 
@@ -31,8 +31,16 @@ module Cards
         return @@attributes[self.name] if names.empty?
     
         attr_accessor *names
-
+        
         names.each do |name|
+          class_eval do
+            # generates e.g.: power!(-2) # changes power by -2
+            define_method("#{name}!") do |value|
+              old = instance_variable_get("@#{name}")
+              instance_variable_set("@#{name}", old + value)
+            end
+          end
+          
           metaclass.instance_eval do
             define_method(name) do |value|
               @@attributes ||= {}
@@ -55,7 +63,7 @@ module Cards
             self.class.recursive_attributes.each do |name, value|
               instance_variable_set("@#{name}", value)
             end
-          end
+          end          
         end
       end  # end attributes
     end
