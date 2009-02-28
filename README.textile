@@ -19,7 +19,9 @@ To run the tests you need the following gems installed:
 * rspec: @gem install rspec@
 * rcov: @gem install rcov@
 
-After that you should be able to run the specs in the root folder with @rake@
+After that you should be able to run the specs in the root folder with @rake@.
+
+Try @rake -T@ to see a list of all available tasks.
 
 h2. User Guide
 
