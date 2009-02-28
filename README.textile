@@ -2,6 +2,24 @@ h1. Cards (temporary name)
 
 Cards wants to be a framework for building card games like Magic: The Gathering.
 
+h2. Installation
+
+*Simple usage*
+
+If you just want to use the library, you can install the gem-version with: @gem install Soleone-cards --source http://gems.github.com@
+
+*Development*
+
+If you want to work on the code, you need to clone this repository first with: @git clone git://github.com/Soleone/cards.git@
+
+To run the tests you need the following gems installed:
+
+* rspec: @gem install rspec*
+* rcov: @gem install rcov*
+
+After that you should be able to run the specs in the root folder with @rake@
+
+Development 
 h2. User Guide
 
 A @Card@ can have a @name@, @type@, @description@, a subclass is @Creature@ (something to "put on the table").
