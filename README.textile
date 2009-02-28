@@ -8,6 +8,8 @@ h2. Installation
 
 If you just want to use the library, you can install the gem-version with: @gem install Soleone-cards --source http://gems.github.com@
 
+Just remember that the library is at a _very_ early stage at this moment!
+
 *Development*
 
 If you want to work on the code, you need to clone this repository first with: @git clone git://github.com/Soleone/cards.git@
@@ -19,7 +21,6 @@ To run the tests you need the following gems installed:
 
 After that you should be able to run the specs in the root folder with @rake@
 
-Development 
 h2. User Guide
 
 A @Card@ can have a @name@, @type@, @description@, a subclass is @Creature@ (something to "put on the table").
