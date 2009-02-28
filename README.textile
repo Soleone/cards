@@ -14,8 +14,8 @@ If you want to work on the code, you need to clone this repository first with: @
 
 To run the tests you need the following gems installed:
 
-* rspec: @gem install rspec*
-* rcov: @gem install rcov*
+* rspec: @gem install rspec@
+* rcov: @gem install rcov@
 
 After that you should be able to run the specs in the root folder with @rake@
 
